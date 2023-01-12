@@ -16,9 +16,9 @@ namespace WofHCalc_p2_UI_.VM
     internal class AccMngrVM : INotifyPropertyChanged
     {
         public Account? New_acc { get; set; }
-        public string input1 { get; set; }
-        public string input2 { get; set; }
-        string saves_path;
+        public string Input1 { get; set; }
+        public string Input2 { get; set; }
+        private readonly string saves_path;
         public ObservableCollection<Account> Accounts { get; set; }
         public Account? Selected_acc { get; set; }
         private RelayCommand? add_command;
@@ -26,25 +26,24 @@ namespace WofHCalc_p2_UI_.VM
         {
             get
             {
-                return add_command ??
-                    (add_command = new RelayCommand(obj =>
+                return add_command ??= new RelayCommand(obj =>
                     {
                         try
                         {
-                            New_acc = new(input1,byte.Parse(input2));                            
-                            using (StreamWriter writer = new(File.Open(saves_path + "/" + input1, FileMode.CreateNew)))
+                            New_acc = new(Input1,byte.Parse(Input2));                            
+                            using (StreamWriter writer = new(File.Open(saves_path + "/" + Input1, FileMode.CreateNew)))
                             {                                
                                 writer.Write(New_acc.ToString());                                                                                                
                             }
                             Accounts.Add(New_acc);
                             Selected_acc = Accounts.Last();                            
-                            OnPropertyChanged("Accounts");
+                            OnPropertyChanged(nameof(Accounts));
                         }
                         catch
                         {
                             MessageBox.Show("ошибка при создании аккаунта");
                         }                        
-                    }));
+                    });
             }
         }
         private RelayCommand? delete_command;
@@ -52,15 +51,14 @@ namespace WofHCalc_p2_UI_.VM
         {
             get
             {
-                return delete_command ??
-                    (delete_command = new RelayCommand(o1 =>
+                return delete_command ??= new RelayCommand(o1 =>
                     {
                         File.Delete(saves_path + "/" + Selected_acc.Name);
                         Accounts.Remove(Selected_acc);
-                        OnPropertyChanged("Accounts");
+                        OnPropertyChanged(nameof(Accounts));
                     }, 
                     o2 =>{ return (Selected_acc != null); }
-                    ));
+                    );
             }
         }
         private RelayCommand open_command;
@@ -68,20 +66,19 @@ namespace WofHCalc_p2_UI_.VM
         {
             get
             {
-                return open_command ??
-                    (open_command = new RelayCommand(o1 =>
+                return open_command ??= new RelayCommand(o1 =>
                     {            
                         //чет делает
                         
                     }, 
                     o2 => { return (Selected_acc != null); }
-                    ));
+                    );
             }
         }
         internal AccMngrVM()
         {
-            input1 = "";
-            input2 = "";
+            Input1 = "";
+            Input2 = "";
             saves_path = "saves";
             Accounts = new ObservableCollection<Account>();                       
             //проверяем наличие папки сохранений
@@ -94,16 +91,15 @@ namespace WofHCalc_p2_UI_.VM
                     .GetFiles(saves_path)
                     .ToList()
                     .ForEach(f => {
-                        using (StreamReader reader = new StreamReader(f))
-                        {
-                            Accounts.Add(new Account(reader.ReadLine(), byte.Parse(reader.ReadLine())));
-                        }});
+                        using StreamReader reader = new(f);
+                        Accounts.Add(new Account(reader.ReadLine(), byte.Parse(reader.ReadLine())));
+                    });
             }            
         }
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged(string propertyName = "")
         {
-            if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
             //MessageBox.Show("here");
         }
     }

@@ -36,15 +36,29 @@
                 ItemsSource="{Binding Source={local_VM:EnumBindingSourse {x:Type local_Models:Race}}}"
                 SelectedItem="{Binding R}"
                 >
-                
             </ComboBox>
-                      
-                      
-            
         </Grid>
-        
-        <TextBlock></TextBlock>
-        
+        <Grid Grid.Row="0" Grid.Column="1" Panel.ZIndex="1" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <ComboBox 
+                Name="cmbTowns"
+                Grid.Column="0"
+                ItemsSource="{Binding Towns}"
+                DisplayMemberPath="Name"
+                
+                />
+
+            <ComboBox
+                Name="cmbClimate"
+                Grid.Column="2"
+                ItemsSource="{Binding Source={local_VM:EnumBindingSourse {x:Type local_Models:Climate}}}"
+                
+                />
+        </Grid>
         <UniformGrid Columns="5" Rows="4" Name="TownBuildings" Grid.Column="1" Grid.Row="1">
             
         </UniformGrid>
