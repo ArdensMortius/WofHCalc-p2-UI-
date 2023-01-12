@@ -1,0 +1,52 @@
+﻿<Window x:Class="WofHCalc_p2_UI_.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:WofHCalc_p2_UI_" 
+        xmlns:local_VM="clr-namespace:WofHCalc_p2_UI_.VM"
+        xmlns:local_Models="clr-namespace:WofHCalc_p2_UI_.Models"
+        mc:Ignorable="d"
+        Title="MainWindow" WindowState="Maximized" >
+
+
+    
+    <Grid Name="m1" ShowGridLines="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Grid.Column="0" Panel.ZIndex="1" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding World}" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="1" Text="{Binding Name}" VerticalAlignment="Center"/>
+            <ComboBox 
+                Name="cmbRaces"
+                Grid.Column="2" 
+                ItemsSource="{Binding Source={local_VM:EnumBindingSourse {x:Type local_Models:Race}}}"
+                SelectedItem="{Binding R}"
+                >
+                
+            </ComboBox>
+                      
+                      
+            
+        </Grid>
+        
+        <TextBlock></TextBlock>
+        
+        <UniformGrid Columns="5" Rows="4" Name="TownBuildings" Grid.Column="1" Grid.Row="1">
+            
+        </UniformGrid>
+    </Grid>
+</Window>
