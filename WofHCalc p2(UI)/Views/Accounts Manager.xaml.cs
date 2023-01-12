@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WofHCalc_p2_UI_.Control;
+using WofHCalc_p2_UI_.Models;
 
 namespace WofHCalc_p2_UI_.Views
 {
@@ -19,14 +21,18 @@ namespace WofHCalc_p2_UI_.Views
     /// </summary>
     public partial class Accounts_Manager : Window
     {
+        public Account? open_acc { get; private set; }
+        AccMngrController ds;
         public Accounts_Manager()
         {
             InitializeComponent();            
-            DataContext = new VM.AccMngrVM();
+            ds = new AccMngrController();
+            DataContext = ds;
         }
         private void Open_Click(object sender, RoutedEventArgs e)
         {
-            //this.DialogResult = true;
+            this.open_acc = ds.Selected_acc;
+            this.DialogResult = true;
         }
     }
 }

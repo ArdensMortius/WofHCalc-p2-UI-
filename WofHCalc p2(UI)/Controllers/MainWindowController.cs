@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using WofHCalc_p2_UI_.Models;
 
-namespace WofHCalc_p2_UI_.VM
+namespace WofHCalc_p2_UI_.Control
 {
-    class MainWindowVM
+    class MainWindowController
     {
         public Account? ActiveAccount { get; set; }
         public Town? SelectedTown { get; set; }

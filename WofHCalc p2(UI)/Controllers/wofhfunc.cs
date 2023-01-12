@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using WofHCalc_p2_UI_.Models;
 
-namespace WofHCalc_p2_UI_.VM
+namespace WofHCalc_p2_UI_.Control
 {
     internal static class Wofhfunk
     {

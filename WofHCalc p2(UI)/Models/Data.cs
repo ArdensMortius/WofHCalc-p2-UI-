@@ -53,17 +53,17 @@ namespace WofHCalc_p2_UI_.Models
         }        
         static Data()
         {
-#pragma warning disable CS8601 // Возможно, назначение-ссылка, допускающее значение NULL.
+
             //+
             ResData = new Resource[23];
             string data = File.ReadAllText("resourses.json");
-            ResData = System.Text.Json.JsonSerializer.Deserialize<Resource[]>(data);
+            ResData = System.Text.Json.JsonSerializer.Deserialize<Resource[]>(data)!;
             //+
             DepositsData = new Deposit[53];
             data = File.ReadAllText("deposits.json");
-            DepositsData = System.Text.Json.JsonSerializer.Deserialize<Deposit[]>(data);
+            DepositsData = System.Text.Json.JsonSerializer.Deserialize<Deposit[]>(data)!;
 
-#pragma warning restore CS8601 // Возможно, назначение-ссылка, допускающее значение NULL.
+
         }
         
     }

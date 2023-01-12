@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WofHCalc_p2_UI_.Models;
+using WofHCalc_p2_UI_.Views;
+using WofHCalc_p2_UI_.Control;
 
 namespace WofHCalc_p2_UI_
 {
@@ -23,11 +25,21 @@ namespace WofHCalc_p2_UI_
     {
         //Dictionary<string, int> race_kostyl;
         //string[] rrr = new string[5];
+        MainWindowController dc;            
         public MainWindow()
         {
-            Account acc = new();//
-            DataContext = acc;
-            InitializeComponent();       
+            dc = new MainWindowController();
+            DataContext = dc;            
+            if (dc.ActiveAccount== null) 
+            {
+                Accounts_Manager AM = new();
+                if (AM.ShowDialog()==true)
+                {
+                    dc.ActiveAccount = AM.open_acc;
+                }
+            }
+            //MessageBox.Show(this.dc
+            InitializeComponent();            
         }
     }
 }

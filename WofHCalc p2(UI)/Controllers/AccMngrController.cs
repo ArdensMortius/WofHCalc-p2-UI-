@@ -10,10 +10,11 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Shapes;
 using WofHCalc_p2_UI_.Models;
+using WofHCalc_p2_UI_.Models.templates;
 
-namespace WofHCalc_p2_UI_.VM
+namespace WofHCalc_p2_UI_.Control
 {
-    internal class AccMngrVM : INotifyPropertyChanged
+    internal class AccMngrController : INotifyPropertyChanged
     {
         public Account? New_acc { get; set; }
         public string Input1 { get; set; }
@@ -30,10 +31,10 @@ namespace WofHCalc_p2_UI_.VM
                     {
                         try
                         {
-                            New_acc = new(Input1,byte.Parse(Input2));                            
+                            New_acc = new(Input1, byte.Parse(Input2));                            
                             using (StreamWriter writer = new(File.Open(saves_path + "/" + Input1, FileMode.CreateNew)))
                             {                                
-                                writer.Write(New_acc.ToString());                                                                                                
+                                writer.Write(New_acc.ToJSON());                                                                                                
                             }
                             Accounts.Add(New_acc);
                             Selected_acc = Accounts.Last();                            
@@ -53,7 +54,7 @@ namespace WofHCalc_p2_UI_.VM
             {
                 return delete_command ??= new RelayCommand(o1 =>
                     {
-                        File.Delete(saves_path + "/" + Selected_acc.Name);
+                        File.Delete(saves_path + "/" + Selected_acc!.Name);
                         Accounts.Remove(Selected_acc);
                         OnPropertyChanged(nameof(Accounts));
                     }, 
@@ -61,21 +62,20 @@ namespace WofHCalc_p2_UI_.VM
                     );
             }
         }
-        private RelayCommand open_command;
+        private RelayCommand? open_command;
         public RelayCommand Open
         {
             get
             {
                 return open_command ??= new RelayCommand(o1 =>
                     {            
-                        //чет делает
-                        
+                        //ничего не делает и вроде не должна
                     }, 
                     o2 => { return (Selected_acc != null); }
                     );
             }
         }
-        internal AccMngrVM()
+        internal AccMngrController()
         {
             Input1 = "";
             Input2 = "";
@@ -90,9 +90,17 @@ namespace WofHCalc_p2_UI_.VM
                 Directory
                     .GetFiles(saves_path)
                     .ToList()
-                    .ForEach(f => {
-                        using StreamReader reader = new(f);
-                        Accounts.Add(new Account(reader.ReadLine(), byte.Parse(reader.ReadLine())));
+                    .ForEach(path => {
+                        string data = File.ReadAllText(path);
+                        try
+                        {
+                            Account acc = System.Text.Json.JsonSerializer.Deserialize<Account>(data)!;
+                            Accounts.Add(acc);
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Read Error \n" + path);
+                        }
                     });
             }            
         }

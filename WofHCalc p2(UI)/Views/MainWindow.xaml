@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:WofHCalc_p2_UI_" 
-        xmlns:local_VM="clr-namespace:WofHCalc_p2_UI_.VM"
+        xmlns:local_C="clr-namespace:WofHCalc_p2_UI_.Control"
         xmlns:local_Models="clr-namespace:WofHCalc_p2_UI_.Models"
         mc:Ignorable="d"
         Title="MainWindow" WindowState="Maximized" >
@@ -28,15 +28,14 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="{Binding World}" VerticalAlignment="Center"/>
-            <TextBlock Grid.Column="1" Text="{Binding Name}" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="0" Text="{Binding ActiveAccount.World}" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="1" Text="{Binding ActiveAccount.Name}" VerticalAlignment="Center"/>
             <ComboBox 
                 Name="cmbRaces"
                 Grid.Column="2" 
-                ItemsSource="{Binding Source={local_VM:EnumBindingSourse {x:Type local_Models:Race}}}"
-                SelectedItem="{Binding R}"
-                >
-            </ComboBox>
+                SelectedItem="{Binding ActiveAccount.R}"
+                ItemsSource="{Binding Source={local_C:EnumBindingSourse {x:Type local_Models:Race}}}"
+                />
         </Grid>
         <Grid Grid.Row="0" Grid.Column="1" Panel.ZIndex="1" Margin="5">
             <Grid.ColumnDefinitions>
@@ -47,7 +46,7 @@
             <ComboBox 
                 Name="cmbTowns"
                 Grid.Column="0"
-                ItemsSource="{Binding Towns}"
+                ItemsSource="{Binding ActiveAccount.Towns}"
                 DisplayMemberPath="Name"
                 
                 />
@@ -55,7 +54,7 @@
             <ComboBox
                 Name="cmbClimate"
                 Grid.Column="2"
-                ItemsSource="{Binding Source={local_VM:EnumBindingSourse {x:Type local_Models:Climate}}}"
+                ItemsSource="{Binding Source={local_C:EnumBindingSourse {x:Type local_Models:Climate}}}"
                 
                 />
         </Grid>

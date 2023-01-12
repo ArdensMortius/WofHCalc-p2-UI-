@@ -25,8 +25,8 @@
             <Button Padding="5" Command="{Binding Delete}">Удалить</Button>
             <StackPanel
             Orientation="Horizontal">
-                <TextBox Padding="5" Width="150" Text="{Binding input1, Mode=TwoWay}"></TextBox>
-                <TextBox Padding="5" Width="50" Text="{Binding input2, Mode=TwoWay}"></TextBox>
+                <TextBox Padding="5" Width="150" Text="{Binding Input1, Mode=TwoWay}"></TextBox>
+                <TextBox Padding="5" Width="50" Text="{Binding Input2, Mode=TwoWay}"></TextBox>
             </StackPanel>
             <Button Padding="5" Command="{Binding Add}">Добавить</Button>
         </StackPanel>

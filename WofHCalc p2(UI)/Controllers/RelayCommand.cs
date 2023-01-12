@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace WofHCalc_p2_UI_.VM
+namespace WofHCalc_p2_UI_.Control
 {
     internal class RelayCommand : ICommand
     {
@@ -29,9 +29,9 @@ namespace WofHCalc_p2_UI_.VM
             return this.canExecute == null || this.canExecute(parameter);
         }
 
-        public void Execute(object parameter)
+        public void Execute(object? parameter)
         {
-            this.execute(parameter);
+            this.execute!(parameter);
         }
     }
 }

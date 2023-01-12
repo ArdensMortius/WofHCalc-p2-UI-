@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Markup;
 
-namespace WofHCalc_p2_UI_.VM
+namespace WofHCalc_p2_UI_.Control
 {
     internal class EnumBindingSourse : MarkupExtension
     {

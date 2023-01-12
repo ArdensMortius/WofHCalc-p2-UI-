@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace WofHCalc_p2_UI_.Models
 {
@@ -19,16 +20,14 @@ namespace WofHCalc_p2_UI_.Models
             R = Race.unknown;
             Towns = new() {new Town()};
         }
-
+        public string ToJSON() => JsonSerializer.Serialize<Account>(this);
 
         #region заглушка для тестов
-        public override string ToString()
-        {
-            return Name + "\n" + World;
-        }
+        //public override string ToString()
+        //{
+        //    return Name + "\n" + World;
+        //}
         #endregion
-        #region заглушка2
 
-        #endregion
     }
 }
