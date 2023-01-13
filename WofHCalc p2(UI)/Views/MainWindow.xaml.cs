@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using WofHCalc_p2_UI_.Models;
 using WofHCalc_p2_UI_.Views;
 using WofHCalc_p2_UI_.Control;
+using System.IO;
 
 namespace WofHCalc_p2_UI_
 {
@@ -37,9 +38,24 @@ namespace WofHCalc_p2_UI_
                 {
                     dc.ActiveAccount = AM.open_acc;
                 }
-            }
-            //MessageBox.Show(this.dc
+                else this.Close();
+            }            
             InitializeComponent();            
+        }
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)//пока просто сохранение без диалогового окна
+        {
+            if (dc.ActiveAccount != null)
+            {
+                string path = "saves/" + dc.ActiveAccount!.Name;
+                using StreamWriter writer = new(File.Open(path, FileMode.Create));
+                writer.Write(dc.ActiveAccount.ToJSON());
+            }
+            else MessageBox.Show("Nothing to save");
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Towns.Height = (int)(Towns.ActualHeight / Towns.Items.Count) * (Towns.Items.Count + 1);
         }
     }
 }

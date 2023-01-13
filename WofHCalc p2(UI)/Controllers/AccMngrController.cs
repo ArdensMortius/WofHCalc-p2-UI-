@@ -95,7 +95,7 @@ namespace WofHCalc_p2_UI_.Control
                         try
                         {
                             Account acc = System.Text.Json.JsonSerializer.Deserialize<Account>(data)!;
-                            Accounts.Add(acc);
+                            Accounts.Add(acc);                            
                         }
                         catch
                         {

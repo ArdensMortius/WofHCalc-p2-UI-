@@ -9,12 +9,12 @@ namespace WofHCalc_p2_UI_.Models
     public class Town
     {
         public string Name { get; set; }
-        public Climate Clim { get; set; }
-
+        public Climate Climate { get; set; }
+        public DepositName Deposit { get; set; }
         public Town() 
         {
             Name = "new town";
-            Clim = Climate.unknown;
+            Climate = Climate.unknown;
         }
     }
 }

@@ -8,8 +8,10 @@
         xmlns:local_C="clr-namespace:WofHCalc_p2_UI_.Control"
         xmlns:local_Models="clr-namespace:WofHCalc_p2_UI_.Models"
         mc:Ignorable="d"
-        Title="MainWindow" WindowState="Maximized" >
-
+        FontSize="15"    
+        Title="MainWindow" WindowState="Maximized" Closing="Window_Closing" >
+    
+    
 
     
     <Grid Name="m1" ShowGridLines="True">
@@ -43,23 +45,94 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <ComboBox 
-                Name="cmbTowns"
-                Grid.Column="0"
-                ItemsSource="{Binding ActiveAccount.Towns}"
-                DisplayMemberPath="Name"
-                
+            <TextBox 
+                Name="tbTownName"
+                Grid.Column="0"         
+                Text="{Binding SelectedTown.Name, UpdateSourceTrigger=PropertyChanged}"                
                 />
-
+            <ComboBox
+                Name="cmbDoposit"
+                Grid.Column="1"
+                ItemsSource="{Binding Source={local_C:EnumBindingSourse {x:Type local_Models:DepositName}}}"
+                SelectedItem="{Binding SelectedTown.Deposit}"
+                />
             <ComboBox
                 Name="cmbClimate"
                 Grid.Column="2"
                 ItemsSource="{Binding Source={local_C:EnumBindingSourse {x:Type local_Models:Climate}}}"
-                
+                SelectedItem="{Binding SelectedTown.Climate}"
                 />
         </Grid>
-        <UniformGrid Columns="5" Rows="4" Name="TownBuildings" Grid.Column="1" Grid.Row="1">
+        <!--<UniformGrid Columns="5" Rows="4" Name="TownBuildings" Grid.Column="1" Grid.Row="1">
             
-        </UniformGrid>
+        </UniformGrid>-->
+        <StackPanel Grid.Row="1" Grid.Column="0" Panel.ZIndex="1">
+            <ListView                
+                Name="Towns"
+                Margin="5,5,5,0"
+                Height="auto"
+                ItemsSource="{Binding ActiveAccount.Towns}"
+                SelectedItem="{Binding SelectedTown}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="200" DisplayMemberBinding="{Binding Name}">Название</GridViewColumn>
+                        <GridViewColumn Width="50" DisplayMemberBinding="{Binding Deposit}">МР</GridViewColumn>
+                        <GridViewColumn Width="80" DisplayMemberBinding="{Binding Climate}">Климат</GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <UniformGrid Columns="2">
+                <Button Margin="5" Command="{Binding AddTown}">New Town</Button>
+                <Button Margin="5" Command="{Binding DelTown}">Delete Town</Button>
+            </UniformGrid>
+            <DataGrid
+                Name="PriсesTaxes"
+                Margin="5,0,5,5"
+                Height="auto"
+                AutoGenerateColumns="False"
+                ItemsSource="{Binding PriceTaxDataAdapted}"
+                CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False"                
+                >
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Resource" Width="130">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Resource}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Price" Binding="{Binding Path=PT.Price}"/>
+                    <DataGridTextColumn Header="Tax" Binding="{Binding Path=PT.Tax}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Grid Name="ScienceBonuses" Panel.ZIndex="2" Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MinWidth="30"/>
+                    <ColumnDefinition MinWidth="20"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Culture Base"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Growth Base"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Research"/>
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="Finance"/>
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="Agriculture"/>
+                <TextBlock Grid.Row="5" Grid.Column="0" Text="Industry"/>
+                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ActiveAccount.BaseCulture}"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ActiveAccount.BasePopulationGrowth}"/>
+                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding ActiveAccount.Science_Bonuses[0]}"/>
+                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding ActiveAccount.Science_Bonuses[1]}"/>
+                <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding ActiveAccount.Science_Bonuses[2]}"/>
+                <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding ActiveAccount.Science_Bonuses[3]}"/>
+            </Grid>
+            
+        </StackPanel>
+        
     </Grid>
 </Window>
