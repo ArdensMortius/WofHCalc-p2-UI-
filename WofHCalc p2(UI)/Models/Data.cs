@@ -12,6 +12,7 @@ namespace WofHCalc_p2_UI_.Models
     {
         public static Resource[] ResData { get; }
         public static Deposit[] DepositsData { get; }
+        public static Build[] BuildindsData { get; }
         public static float RaceEffect_Consumption(Race race)
         {
             if (race == Race.indians) return 0.85f;
@@ -53,7 +54,6 @@ namespace WofHCalc_p2_UI_.Models
         }        
         static Data()
         {
-
             //+
             ResData = new Resource[23];
             string data = File.ReadAllText("resourses.json");
@@ -62,8 +62,10 @@ namespace WofHCalc_p2_UI_.Models
             DepositsData = new Deposit[53];
             data = File.ReadAllText("deposits.json");
             DepositsData = System.Text.Json.JsonSerializer.Deserialize<Deposit[]>(data)!;
-
-
+            //?
+            BuildindsData = new Build[120];
+            data = File.ReadAllText("builds.json");
+            BuildindsData = Build.FromJson(data)!;
         }
         
     }

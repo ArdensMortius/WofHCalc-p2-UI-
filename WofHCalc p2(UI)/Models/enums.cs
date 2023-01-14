@@ -53,6 +53,24 @@ namespace WofHCalc_p2_UI_.Models
         desert = 4,
         snow = 5
     }
+    public enum Slot
+    {
+        plain=0,
+        center=1,
+        hill=2,
+        water=3,
+        fort=4,
+        wounder=5,
+    }
+    public enum Terrain
+    {
+        everywhere = 0,
+        hill = 1,
+        plane_water = 2,
+        plane_no_water = 3,
+        plane = 4,
+        nowhere = 5
+    }
 
     public enum DepositName
     {

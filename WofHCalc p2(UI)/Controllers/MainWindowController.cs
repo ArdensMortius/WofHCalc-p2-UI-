@@ -107,8 +107,7 @@ namespace WofHCalc_p2_UI_.Control
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged(string propertyName = "")
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            //MessageBox.Show("here");
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));            
         }
     }
     public class PTDA
