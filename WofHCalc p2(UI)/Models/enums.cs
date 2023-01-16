@@ -1,18 +1,25 @@
 ﻿using System;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace WofHCalc_p2_UI_.Models
 {
     [Flags]
-    public enum Race
+    public enum Race //++
     {
+        [Description("Не указана")]
         unknown = 0,
+        [Description("Индейцы")]
         indians = 1,
+        [Description("Европейцы")]
         europeans = 2,
+        [Description("Азиаты")]
         asians = 4,
-        africans = 8
+        [Description("Африканцы")]
+        africans = 8  
     }
-    public enum ResName
-    {
+    public enum ResName //+
+    {        
         science = 0,
         money = 1,
         food = 2,
@@ -22,7 +29,7 @@ namespace WofHCalc_p2_UI_.Models
         stone = 6,
         horses = 7,
         sulfur = 8,
-        none1 = 9,
+        aluminium = 9,
         uranium = 10,
         fruit = 11,
         corn = 12,
@@ -33,18 +40,18 @@ namespace WofHCalc_p2_UI_.Models
         wine = 17,
         jewelry = 18,
         clothes = 19,
-        none2 = 20,
+        music = 20,
         films = 21,
         books = 22
     }
-    public enum ResProdType
+    public enum ResProdType //+
     {
         research = 0,
         finance = 1,
         agriculture = 2,
         industry = 3,
     }
-    public enum Climate
+    public enum Climate //+
     {
         unknown = 0,
         water = 1,
@@ -53,7 +60,7 @@ namespace WofHCalc_p2_UI_.Models
         desert = 4,
         snow = 5
     }
-    public enum Slot
+    public enum Slot //+
     {
         plain=0,
         center=1,
@@ -62,7 +69,7 @@ namespace WofHCalc_p2_UI_.Models
         fort=4,
         wounder=5,
     }
-    public enum Terrain
+    public enum Terrain //+
     {
         everywhere = 0,
         hill = 1,
@@ -72,7 +79,7 @@ namespace WofHCalc_p2_UI_.Models
         nowhere = 5
     }
 
-    public enum DepositName
+    public enum DepositName //+
     {
         none = 0,
         wood_meadows = 1,
@@ -128,127 +135,249 @@ namespace WofHCalc_p2_UI_.Models
         uran_desert = 51,
         source_of_wisdom = 52        
     }
-    public enum BuildName
+    public enum BuildName //++
     {
+        [Description ("")]
+        none = 400,
         //fortification
-        moat = 3,//ров        
-        palisade = 19,//частокол
-        walls = 38, //стена
-        fortified_zone = 57, //укреп
+        [Description ("ров")]
+        moat = 3,
+        [Description("частокол")]
+        palisade = 19,
+        [Description("стена")]
+        walls = 38,
+        [Description("укреп")]
+        fortified_zone = 57,
 
-        sam_batery = 101, //зенитка
-        air_defense_system = 109, //пво
+        [Description("зенитка")]
+        sam_batery = 101, //
+        [Description("пво")]
+        air_defense_system = 109, //
 
         //Scientific
+        [Description("петроглиф")]
         petroglyph = 88,
-        school_of_philosophy = 33, //ФШ
-        observatory = 80, //обсерва
+        [Description("ФШ")]
+        school_of_philosophy = 33, //
+        [Description("обсерва")]
+        observatory = 80, //
 
-        library = 35, //библа
-        academy = 70, //академка
-        university = 61, //уник
-        laboratory = 72, //лаба
+        [Description("библа")]
+        library = 35, //
+        [Description("академка")]
+        academy = 70, //
+        [Description("уник")]
+        university = 61, //
+        [Description("лаба")]
+        laboratory = 72, //
 
-    //Production and finances
-        lumber_mill = 5,//пилка
-        farm = 6, //ферма
-        granite_quarry = 12, //гранитный карьер
-        mine = 21, //шахта
-        animal_farm = 23,//пастбище
-        fishing_snare = 84,//ловушка для рыбы
-        fishing_harbor = 24,//промысловый порт
-        //дом охотника
-        //дом собирателя
-        mint = 51,//монетный двор
-        bank = 40, //банк
-        winery = 22,//винодельня
-        printing_office = 42,//типография
-        fuel_plant = 46, //топливный завод
-        weavers_house = 36,//дом ткача
-        weaving_mill = 52,//ткацкая фабрика
-        motionpicture_studio = 47, //киностудия
-        sulphursmelting_plant = 89,//сероплавильный завод
-        concentrating_plant = 66,//обогатительный завод
+        //Production and finances
+        [Description("пилка")]
+        lumber_mill = 5,//
+        [Description("ферма")]
+        farm = 6, //
+        [Description("гранитный карьер")]
+        granite_quarry = 12, // 
+        [Description("шахта")]
+        mine = 21, //
+        [Description("пастбище")]
+        animal_farm = 23,//
+        [Description("ловушка для рыбы")]
+        fishing_snare = 84,//
+        [Description("промысловый порт")]
+        fishing_harbor = 24,//
+        [Description("дом охотника")]
+        hunters_house = 27,//
+        [Description("дом собирателя")]
+        collectors_house = 96,//
+        [Description("монетный двор")]
+        mint = 51,//
+        [Description("банк")]
+        bank = 40, //
+        [Description("винодельня")]
+        winery = 22,//
+        [Description("типография")]
+        printing_office = 42,//
+        [Description("топливный завод")]
+        fuel_plant = 46, //
+        [Description("дом ткача")]
+        weavers_house = 36,//
+        [Description("ткацкая фабрика")]
+        weaving_mill = 52,//
+        [Description("киностудия")]
+        motionpicture_studio = 47, //
+        [Description("сероплавильный завод")]
+        sulphursmelting_plant = 89,//
+        [Description("обогатительный завод")]
+        concentrating_plant = 66,//
 
-        forge = 90,//кузница
-        factory = 49,//мануфактура
-        power_plant = 54,//завод
+        [Description("кузница")]
+        forge = 90,//
+        [Description("мануфактура")]
+        factory = 49,//
+        [Description("завод")]
+        power_plant = 54,//
 
-    //town center
-    //Shrine //алтарь
-     //residence = , //резиденция
-     //castle = , //замок
-     //city_hall = , //ратуша
-     //mayors_office = , //мерия
+        //town center
+        [Description("алтарь")]
+        shrine = 0,//
+        [Description("резиденция")]
+        residence = 25, //
+        [Description("замок")]
+        castle = 39, //
+        [Description("ратуша")]
+        city_hall = 53, //
+        [Description("мерия")]
+        mayors_office = 55, //
 
+        //Storage and trade
+        [Description("землянка")]
+        hut =2, // 
+        [Description("склад")]
+        depot = 17, //
+        [Description("такаюка")]
+        takayuka_depot =45, //
 
-    //Hunter's house
-    //Collector’s house
+        [Description("площадь")]
+        town_square = 87, //
+        [Description("рынок")]
+        market = 26, //
+        [Description("ТБ")]
+        trading_base = 104, //
 
-    //Storage and trade
+        [Description("пристань")]
+        pier =20, //
+        [Description("порт")]
+        harbor =44, //
 
-    //Hut //землянка 
-     //depot = , //склад
-                                    //Pier //пристань
-     //market = , //рынок
-                                     //Harbor //порт
-                                     //Takayuka depot //такаюка
-                                     //Town square //площадь
-                                     //Trading base //ТБ
+        //Culture
+        [Description("обелиск")]
+        obelisk = 8, //
+        [Description("храм")]
+        temple = 79, //
+        [Description("монастырь")]
+        monastery = 82, //
+        [Description("собор")]
+        cathedral = 63, //
+        [Description("театр")]
+        theatre = 67, //
+        [Description("музей")]
+        museum = 62, //
+        [Description("статуя")]
+        monument = 68,//
 
-    //Culture
+        //Military
+        [Description("бойцовская яма")]
+        fight_pit = 1,
+        [Description("казарма")]
+        barracks = 7,
+        [Description("конюшня")]
+        stable = 10,
+        [Description("стрельбище")]
+        shooting_range = 15,
+        [Description("мастерская")]
+        workshop = 32,
+        [Description("ВЗ")]
+        military_factory = 41,
+        [Description("КЗ")]
+        spaceship_factory = 59,
+        [Description("ВЧ")]
+        military_base = 74,
 
-    //Obelisk //обелиск
-    //Museum //музей
-    //Cathedral //собор
-    //Theatre //театр
-    //Monument //статую
-    //Temple //храм
-    //Monastery //монастырь
+        [Description("маяк")]
+        lighthouse = 69,
+        [Description("верфь")]
+        shipyard = 16,
+        [Description("сухой док")]
+        dry_dock = 78,
 
-    //Military
+        [Description("ангар")]
+        hangar = 93,
+        [Description("РЛС")]
+        radar_station = 103,
 
-    //Fight pit
-    //Barracks
-    //Stable
-    //Shooting range
-    //Shipyard
-    //Workshop
-    //Military factory
-    //Spaceship factory
-    //Lighthouse
-    //Military base
-    //Dry-dock
-    //Hangar
-    //Radar station
+        //Demographic
+        [Description("хижина")]
+        shack = 85, //
+        [Description("типи")]
+        tipi = 18, //
+        [Description("дом")]
+        house = 48, //
+        [Description("колодец")]
+        well = 4, //
+        [Description("фонтан")]
+        fountain = 34, //
+        [Description("водопровод")]
+        aqueduct = 71, //
+        [Description("водазабор")]
+        water_intake = 28, //
+        [Description("больница")]
+        hospital = 37, //
+        [Description("госпиталь")]
+        infirmary = 81, //
 
-    //Demographic
+        //Special
+        [Description("посоль")]
+        embassy = 13,//
+        [Description("мохро вождей")]
+        chieftains_mokhoro = 111, //
+        [Description("суд")]
+        courthouse = 14, //
+        [Description("тайник")]
+        cache = 86, //
+        [Description("муляж")]
+        decoy = 105,//
 
-    //Well
-    //Tipi
-     //water_intake = ,
-     //fountain = ,
-    //Hospital
-     //house = ,
-    //Aqueduct
-    //Infirmary
-    //Shack
-
-    //Special
-
-    //Embassy //посоль
-    //courthouse = , //суд
-    //Cache //тайник
-    //Decoy //муляж
-    //Chieftains mokhoro //мохро вождей
-
-
-
-
-
-
-
-}
+        //wounders
+        [Description("Капище")]
+        Pagan_temple = 83,
+        [Description("Оракул")]
+        Oracle = 97,
+        [Description("Жертвенник")]
+        Sacrificial_altar = 11,
+        [Description("Стоунхендж")]
+        Stonehenge = 94,
+        [Description("Земляная плотина")]
+        Earthen_dam = 76,
+        [Description("Геоглиф")]
+        Geoglyph = 56,
+        [Description("Мать-Земля")]
+        Earth_Mother = 76,
+        [Description("Висячие сады")]
+        The_Hanging_Gardens = 92,
+        [Description("Колизей")]
+        Coliseum = 58,
+        [Description("Великая библиотека")]
+        The_Great_Library = 60,
+        [Description("Пирамида")]
+        The_Pyramids = 73,
+        [Description("Сфинкс")]
+        Sphinx = 112,
+        [Description("Терракотовая армия")]
+        The_Terracotta_Army = 9,
+        [Description("Колосс")]
+        The_Colossus = 75,
+        [Description("Мачу-Пикчу")]
+        Machu_Picchu = 100,
+        [Description("Гелиоконцентратор")]
+        Helioconcentrator = 91,
+        [Description("Орден Тамплиеров")]
+        The_Order_of_Knights_Templar = 98,
+        [Description("Академия СунЦзы")]
+        Sun_Tzus_War_Academy = 99,
+        [Description("Царь-пушка")]
+        The_Tsar_Cannon = 95,
+        [Description("Бранденбургские ворота")]
+        Brandenburg_Gate = 108,
+        [Description("Лас-Вегас")]
+        LasVegas = 107,
+        [Description("Грузовой аэропорт")]
+        Freight_airport = 30,
+        [Description("Центр управления полетами")]
+        Mission_control_center = 29,
+        [Description("Космодром")]
+        Spaceport = 77,
+    }
 
 
 }

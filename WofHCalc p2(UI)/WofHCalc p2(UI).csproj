@@ -9,6 +9,38 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="img\bld_lvl\building_lvl0.png" />
+    <None Remove="img\bld_lvl\building_lvl1.png" />
+    <None Remove="img\bld_lvl\building_lvl2.png" />
+    <None Remove="img\bld_lvl\building_lvl3.png" />
+    <None Remove="img\bld_lvl\building_lvl4.png" />
+    <None Remove="img\bld_lvl\building_lvl5.png" />
+    <None Remove="img\icons\res\res0.png" />
+    <None Remove="img\icons\res\res1.png" />
+    <None Remove="img\icons\res\res10.png" />
+    <None Remove="img\icons\res\res11.png" />
+    <None Remove="img\icons\res\res12.png" />
+    <None Remove="img\icons\res\res13.png" />
+    <None Remove="img\icons\res\res14.png" />
+    <None Remove="img\icons\res\res15.png" />
+    <None Remove="img\icons\res\res16.png" />
+    <None Remove="img\icons\res\res17.png" />
+    <None Remove="img\icons\res\res18.png" />
+    <None Remove="img\icons\res\res19.png" />
+    <None Remove="img\icons\res\res2.png" />
+    <None Remove="img\icons\res\res20.png" />
+    <None Remove="img\icons\res\res21.png" />
+    <None Remove="img\icons\res\res22.png" />
+    <None Remove="img\icons\res\res3.png" />
+    <None Remove="img\icons\res\res4.png" />
+    <None Remove="img\icons\res\res5.png" />
+    <None Remove="img\icons\res\res6.png" />
+    <None Remove="img\icons\res\res7.png" />
+    <None Remove="img\icons\res\res8.png" />
+    <None Remove="img\icons\res\res9.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
 
@@ -18,6 +50,111 @@
 
   <ItemGroup>
     <Folder Include="img\buildins\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="img\bld_lvl\building_lvl0.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\bld_lvl\building_lvl1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\bld_lvl\building_lvl2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\bld_lvl\building_lvl3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\bld_lvl\building_lvl4.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\bld_lvl\building_lvl5.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\icons\res\res0.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\icons\res\res1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\icons\res\res10.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\icons\res\res11.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\icons\res\res12.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\icons\res\res13.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\icons\res\res14.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\icons\res\res15.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\icons\res\res16.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\icons\res\res17.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\icons\res\res18.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\icons\res\res19.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\icons\res\res2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\icons\res\res20.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\icons\res\res21.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\icons\res\res22.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\icons\res\res3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\icons\res\res4.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\icons\res\res5.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\icons\res\res6.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\icons\res\res7.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\icons\res\res8.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\icons\res\res9.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="jsons\builds.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="jsons\deposits.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="jsons\luckytown.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="jsons\resourses.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

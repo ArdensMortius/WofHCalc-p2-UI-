@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using WofHCalc_p2_UI_.Models;
+using WofHCalc_p2_UI_.Models.templates;
 
 namespace WofHCalc_p2_UI_.Control
 {   
@@ -36,6 +37,8 @@ namespace WofHCalc_p2_UI_.Control
             }
         }
 
+        //всякие штуки
+        
 
         //команды
         private RelayCommand? add_town_command;
@@ -82,9 +85,9 @@ namespace WofHCalc_p2_UI_.Control
         }
         //костыли
         private ObservableCollection<PTDA>? ptda;
-        public ObservableCollection<PTDA> PriceTaxDataAdapted 
+        public ObservableCollection<PTDA> PriceTaxDataAdapter 
         {
-            set { ptda = value; OnPropertyChanged(nameof(PriceTaxDataAdapted)); }            
+            set { ptda = value; OnPropertyChanged(nameof(PriceTaxDataAdapter)); }            
             get
             {
                 if (ptda != null) return ptda;
@@ -95,6 +98,7 @@ namespace WofHCalc_p2_UI_.Control
                     {
                         ptda.Add(new PTDA
                         {
+                            ImgPath = $"/img/icons/res/res{i}.png",
                             Resource = ((ResName)i).ToString(),
                             PT = ActiveAccount!.Prices[i]
                         });
@@ -110,9 +114,18 @@ namespace WofHCalc_p2_UI_.Control
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));            
         }
     }
-    public class PTDA
+    //преобразование данных из json в другой вид, чтоб удобно пользоваться было
+    public class PTDA 
     {
+        public string? ImgPath { get; set; }
         public string? Resource { get; set; }
         public PriceTax? PT { get; set; }
+    }
+    public class BDA
+    {
+        public string? Name { get; set; }
+        public int ID { get; set; }
+        //public BuildName bName { get; set; } //может и так сойдёт. Сразу и ID и название доступны. Надо проверять
+        public Build? Building { get; set; }
     }
 }

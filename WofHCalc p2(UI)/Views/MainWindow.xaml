@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:WofHCalc_p2_UI_" 
-        xmlns:local_C="clr-namespace:WofHCalc_p2_UI_.Control"
-        xmlns:local_Models="clr-namespace:WofHCalc_p2_UI_.Models"
+        xmlns:ctrls="clr-namespace:WofHCalc_p2_UI_.Control"
+        xmlns:models="clr-namespace:WofHCalc_p2_UI_.Models"
         mc:Ignorable="d"
         FontSize="15"    
         Title="MainWindow" WindowState="Maximized" Closing="Window_Closing" >
@@ -34,9 +34,11 @@
             <TextBlock Grid.Column="1" Text="{Binding ActiveAccount.Name}" VerticalAlignment="Center"/>
             <ComboBox 
                 Name="cmbRaces"
-                Grid.Column="2" 
-                SelectedItem="{Binding ActiveAccount.R}"
-                ItemsSource="{Binding Source={local_C:EnumBindingSourse {x:Type local_Models:Race}}}"
+                Grid.Column="2"                 
+                SelectedValuePath="Value"
+                DisplayMemberPath="Description"
+                SelectedValue="{Binding Path=ActiveAccount.R, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                ItemsSource="{Binding Path=ActiveAccount.R, Converter={ctrls:EnumToCollectionConverter}, Mode=OneTime}"                                
                 />
         </Grid>
         <Grid Grid.Row="0" Grid.Column="1" Panel.ZIndex="1" Margin="5">
@@ -55,13 +57,13 @@
             <ComboBox
                 Name="cmbDoposit"
                 Grid.Column="1"
-                ItemsSource="{Binding Source={local_C:EnumBindingSourse {x:Type local_Models:DepositName}}}"
+                ItemsSource="{Binding Source={ctrls:EnumBindingSourse {x:Type models:DepositName}}}"
                 SelectedItem="{Binding SelectedTown.Deposit}"
                 />
             <ComboBox
                 Name="cmbClimate"
                 Grid.Column="2"
-                ItemsSource="{Binding Source={local_C:EnumBindingSourse {x:Type local_Models:Climate}}}"
+                ItemsSource="{Binding Source={ctrls:EnumBindingSourse {x:Type models:Climate}}}"
                 SelectedItem="{Binding SelectedTown.Climate}"
                 />
             <StackPanel 
@@ -101,13 +103,36 @@
         </UniformGrid>-->
         <DataGrid Name="TempBuilds" Grid.Row="1" Grid.Column="1"
                   Margin="5"
-                  ItemsSource="{Binding SelectedTown.TownBuilds}">
-            
+                  Height="auto"
+                  ItemsSource="{Binding SelectedTown.TownBuilds}"
+                  CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False"
+                  AutoGenerateColumns="False"
+                  >
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="slot" Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Slot}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Builds">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox
+                                ItemsSource="{Binding Source={ctrls:EnumBindingSourse {x:Type models:BuildName}}}"
+                                SelectedItem="{Binding Path=Building, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            </ComboBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Level" Binding="{Binding Path=Level}"/>
+                <DataGridCheckBoxColumn Header="Available" Binding="{Binding Path=Available}"/>
+            </DataGrid.Columns>
         </DataGrid>
         <ScrollViewer Grid.Row="1" Grid.Column="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
             <StackPanel Panel.ZIndex="1">
-                <ListView                
-                    Name="Towns"
+                <ListView Name="Towns"
                     Margin="5,5,5,0"
                     Height="auto"
                     ItemsSource="{Binding ActiveAccount.Towns}"
@@ -124,15 +149,24 @@
                     <Button Margin="5" Command="{Binding AddTown}">New Town</Button>
                     <Button Margin="5" Command="{Binding DelTown}">Delete Town</Button>
                 </UniformGrid>
-                <DataGrid
-                    Name="PriсesTaxes"
+                <DataGrid Name="PriсesTaxes"
                     Margin="5,0,5,5"
                     Height="auto"
                     AutoGenerateColumns="False"
-                    ItemsSource="{Binding PriceTaxDataAdapted}"
+                    ItemsSource="{Binding PriceTaxDataAdapter}"
                     CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False"                
                     >
                     <DataGrid.Columns>
+                        <DataGridTemplateColumn Width="18">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image                                        
+                                        Stretch="None"
+                                        Source="{Binding Path=ImgPath}">
+                                    </Image>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                         <DataGridTemplateColumn Header="Resource" Width="130">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>

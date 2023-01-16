@@ -10,30 +10,27 @@ using WofHCalc_p2_UI_.Models.templates;
 
 namespace WofHCalc_p2_UI_.Models
 {
-    public class BuildSlot
-    {
-        public Slot Slot { get; set; }
-        public BuildName? Building { get; set; }
-        public byte? Level { get; set; }
-        public bool Available { get; set; }
-        public BuildSlot()
-        {
-            Slot = Slot.plain; Building= null; Level = null; Available = true;
-        }
-        public BuildSlot(Slot slot = Slot.plain, bool available = true)
-        {
-            Slot = slot;
-            Building = null;
-            Level = null;
-            this.Available = available;
-        }
-    }
 
     public class Town : INotifyPropertyChanged
     {
-        public string Name { get; set; }
-        public Climate Climate { get; set; }
-        public DepositName Deposit { get; set; }
+        private string name;
+        public string Name 
+        {
+            get => name;
+            set { name = value; OnPropertyChanged(nameof(Name)); }
+        }
+        private Climate clm;
+        public Climate Climate
+        {
+            get => clm;
+            set { clm = value; OnPropertyChanged(nameof(Climate)); }
+        }
+        private DepositName deposit;
+        public DepositName Deposit 
+        { 
+            get => deposit;
+            set { deposit = value; OnPropertyChanged(nameof(Deposit)); }
+        }
         private byte water_places;
         public byte WaterPlaces 
         {
@@ -43,7 +40,8 @@ namespace WofHCalc_p2_UI_.Models
                 water_places = value;
                 for (int i = 10; i < 14; i++)
                     if (water_places + 10 > i) TownBuilds[i].Slot = Slot.water;
-                    else TownBuilds[i].Slot = Slot.plain;                
+                    else TownBuilds[i].Slot = Slot.plain;
+                OnPropertyChanged(nameof(WaterPlaces));
             }
         }
         private bool on_hill;
@@ -63,9 +61,19 @@ namespace WofHCalc_p2_UI_.Models
                     TownBuilds[16].Slot = Slot.plain;
                     TownBuilds[17].Slot = Slot.plain;
                 }
+                OnPropertyChanged(nameof(OnHill));
             }
         }
-        public ObservableCollection<BuildSlot> TownBuilds { get; set; }
+        private ObservableCollection<BuildSlot> town_buldings;
+        public ObservableCollection<BuildSlot> TownBuilds 
+        { 
+            get=>town_buldings;
+            set
+            {
+                town_buldings= value;
+                OnPropertyChanged(nameof(TownBuilds));
+            }
+        }
         public Town() 
         {
             Name = "new town";
@@ -92,8 +100,51 @@ namespace WofHCalc_p2_UI_.Models
                 new BuildSlot(available: false), //15
                 new BuildSlot(available: false), //16 холм или равнина
                 new BuildSlot(), //17 холм или равнина
-                new BuildSlot(Slot.hill) //18
+                new BuildSlot(Slot.hill) //18 холм
             };
+        }
+        public event PropertyChangedEventHandler? PropertyChanged;
+        public void OnPropertyChanged(string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+    public class BuildSlot : INotifyPropertyChanged
+    {
+        private Slot slot;
+        public Slot Slot 
+        { 
+            get=>slot;
+            set { slot = value; OnPropertyChanged(nameof(Slot)); }
+        }
+        private BuildName bulding;
+        public BuildName Building
+        { 
+            get=>bulding;
+            set { bulding = value; OnPropertyChanged(nameof(Building)); }
+        }
+        private byte? level;
+        public byte? Level 
+        { 
+            get=>level;
+            set { level = value; OnPropertyChanged(nameof(Level)); }
+        }
+        private bool available;
+        public bool Available 
+        { 
+            get=>available;
+            set { available= value; OnPropertyChanged(nameof(Available));}
+        }
+        public BuildSlot()
+        {
+            Slot = Slot.plain; Building= BuildName.none; Level = null; Available = true;
+        }
+        public BuildSlot(Slot slot = Slot.plain, bool available = true)
+        {
+            Slot = slot;
+            Building = BuildName.none;
+            Level = null;
+            this.Available = available;
         }
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged(string propertyName = "")
