@@ -342,7 +342,7 @@ namespace WofHCalc_p2_UI_.Models
         [Description("Геоглиф")]
         Geoglyph = 56,
         [Description("Мать-Земля")]
-        Earth_Mother = 76,
+        Earth_Mother = 43,
         [Description("Висячие сады")]
         The_Hanging_Gardens = 92,
         [Description("Колизей")]

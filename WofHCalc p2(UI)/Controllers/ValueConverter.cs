@@ -14,7 +14,7 @@ namespace WofHCalc_p2_UI_.Control
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return EnumHelper.GetAllValuesAndDescriptions(value.GetType());
+            return EnumHelper.GetAllValuesAndDescriptions(value.GetType()); //это хрень полная
         }
         public object? ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {

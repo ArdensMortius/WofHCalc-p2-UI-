@@ -8,10 +8,13 @@
         xmlns:ctrls="clr-namespace:WofHCalc_p2_UI_.Control"
         xmlns:models="clr-namespace:WofHCalc_p2_UI_.Models"
         mc:Ignorable="d"
-        FontSize="15"    
+        FontSize="15"           
         Title="MainWindow" WindowState="Maximized" Closing="Window_Closing" >
-    
-    
+
+    <Window.Resources>
+        <ctrls:BuildToImgConverter x:Key="BuildToImgConverter"/>
+        <ctrls:EnumDescriptionConverter x:Key="EnumDescriptionConverter"/>
+    </Window.Resources>
 
     
     <Grid Name="m1" ShowGridLines="True">
@@ -95,12 +98,6 @@
                 </CheckBox>
             </StackPanel>
         </Grid>
-        <!--<UniformGrid Name="TownBuildings" Grid.Column="1" Grid.Row="1"
-                     Columns="5" Rows="4" 
-                     Panel.ZIndex="1"
-                     >
-            
-        </UniformGrid>-->
         <DataGrid Name="TempBuilds" Grid.Row="1" Grid.Column="1"
                   Margin="5"
                   Height="auto"
@@ -116,7 +113,29 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+
                 <DataGridTemplateColumn Header="Builds">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="Button_OpenSlot" MouseRightButtonUp="Button_MouseRightButtonUp">
+                                <Button.Content>
+                                    <Border BorderBrush="#FF5D5D5D" BorderThickness = "1">
+                                        <StackPanel Margin="5" Height="66" Width="160" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <Image Height="45" Width="46" Stretch="Uniform" Source="{Binding Path=Building, Converter={StaticResource BuildToImgConverter}, Mode=OneWay}"/>
+                                            <TextBlock 
+                                                Text="{Binding Building, Converter={StaticResource EnumDescriptionConverter}, Mode=OneWay}" 
+                                                HorizontalAlignment="Center" VerticalAlignment="Center"                                                
+                                                       />
+                                        </StackPanel>
+                                    </Border>
+                                    <!--Content="{Binding Path=Building}"-->
+                                </Button.Content>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <!--<DataGridTemplateColumn Header="Builds">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <ComboBox
@@ -125,7 +144,8 @@
                             </ComboBox>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                </DataGridTemplateColumn>-->
+                
                 <DataGridTextColumn Header="Level" Binding="{Binding Path=Level}"/>
                 <DataGridCheckBoxColumn Header="Available" Binding="{Binding Path=Available}"/>
             </DataGrid.Columns>

@@ -56,15 +56,15 @@ namespace WofHCalc_p2_UI_.Models
         {
             //+
             ResData = new Resource[23];
-            string data = File.ReadAllText("resourses.json");
+            string data = File.ReadAllText("jsons/resourses.json");
             ResData = System.Text.Json.JsonSerializer.Deserialize<Resource[]>(data)!;
             //+
             DepositsData = new Deposit[53];
-            data = File.ReadAllText("deposits.json");
+            data = File.ReadAllText("jsons/deposits.json");
             DepositsData = System.Text.Json.JsonSerializer.Deserialize<Deposit[]>(data)!;
             //?
             BuildindsData = new Build[120];
-            data = File.ReadAllText("builds.json");
+            data = File.ReadAllText("jsons/builds.json");
             BuildindsData = Build.FromJson(data)!;
         }
         

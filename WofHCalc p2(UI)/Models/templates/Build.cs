@@ -33,7 +33,7 @@ namespace WofHCalc_p2_UI_.Models.templates
         [JsonPropertyName("efficiency")]
         public double Efficiency { get; set; }
 
-        [JsonPropertyName("group")]
+        [JsonPropertyName("group")] //для определения конкурирующих строений
         public int Group { get; set; }
 
         [JsonPropertyName("maxcount")]
@@ -49,7 +49,7 @@ namespace WofHCalc_p2_UI_.Models.templates
         public Race Race { get; set; }
 
         [JsonPropertyName("slot")]
-        public int Slot { get; set; }
+        public Slot Slot { get; set; }
 
         [JsonPropertyName("terrain")]
         public Terrain Terrain { get; set; } //положение города

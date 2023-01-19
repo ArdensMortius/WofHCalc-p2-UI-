@@ -52,10 +52,22 @@ namespace WofHCalc_p2_UI_
             }
             else MessageBox.Show("Nothing to save");
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_OpenSlot(object sender, RoutedEventArgs e)
         {
-            Towns.Height = (int)(Towns.ActualHeight / Towns.Items.Count) * (Towns.Items.Count + 1);
+            byte slot_id = (byte)TempBuilds.SelectedIndex;
+            SlotBuildsList sbv = new(dc.SelectedTown, slot_id, dc.ActiveAccount!.R);            
+            if (sbv.ShowDialog() == true)
+            {
+                dc.SelectedTown.TownBuilds[slot_id].Building=sbv.selected_build;
+                dc.SelectedTown.TownBuilds[slot_id].Level = 0;
+            }
+        }
+        private void Button_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (TempBuilds.SelectedIndex < 0) return; //костыль, но помогает избежать вылета. Потом надо починить
+            byte slot_id = (byte)TempBuilds.SelectedIndex;            
+            dc.SelectedTown.TownBuilds[slot_id].Building = BuildName.none;
+            dc.SelectedTown.TownBuilds[slot_id].Level = null;
         }
     }
 }

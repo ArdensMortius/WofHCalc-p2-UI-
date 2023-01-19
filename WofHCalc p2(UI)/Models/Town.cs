@@ -76,11 +76,11 @@ namespace WofHCalc_p2_UI_.Models
         }
         public Town() 
         {
-            Name = "new town";
+            name = "new town";
             Climate = Climate.unknown;
             water_places = 0;
             on_hill = false;
-            TownBuilds = new ObservableCollection<BuildSlot>
+            town_buldings = new ObservableCollection<BuildSlot>
             {
                 new BuildSlot(Slot.wounder), //0 чудо
                 new BuildSlot(Slot.fort), //1 защита

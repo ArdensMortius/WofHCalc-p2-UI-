@@ -18,11 +18,6 @@ namespace WofHCalc_p2_UI_.Control
                 throw new Exception("EnumType must not be a null and type Enum");
             EnumType = enumtype;
         }
-        public override object ProvideValue(IServiceProvider serviceProvider)
-        {
-            //var a = Enum.GetValues(EnumType);
-            //foreach ( var v in a) { }
-            return Enum.GetValues(EnumType);
-        }
+        public override object ProvideValue(IServiceProvider serviceProvider) => Enum.GetValues(EnumType);        
     }
 }
